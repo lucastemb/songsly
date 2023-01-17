@@ -33,8 +33,5 @@ with open("songs.csv", 'w') as csvfile:
         for song in songs: 
             csv_writer.writerow(song)
 
-
-   
-
     
 
