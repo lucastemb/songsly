@@ -1,51 +1,51 @@
-Name,Key,Mode
-Flowers,0,1
-Kill Bill,8,1
-Creepin' (with The Weeknd & 21 Savage),1,0
-Superhero (Heroes & Villains) [with Future & Chris Brown],5,0
-"Shakira: Bzrp Music Sessions, Vol. 53",2,0
-Rich Flex,11,0
-Just Wanna Rock,11,1
-Bad Habit,1,1
-golden hour,4,1
-Anti-Hero,4,1
-Sure Thing,11,0
-Romantic Homicide,6,1
-Die For You,1,0
-Low,0,0
-Bebe Dame,7,1
-Unholy (feat. Kim Petras),2,1
-Something in the Orange,4,0
-Snooze,5,1
-Nobody Gets Me,7,1
-As It Was,6,0
-Shirt,3,0
-Here With Me,4,1
-Escapism.,2,1
-Blind,9,0
-Nonsense,8,1
-Que Vuelvas,10,1
-No Role Modelz,10,0
-I'm Good (Blue),7,0
-Sweater Weather,10,1
-Shut up My Moms Calling,9,0
-Tití Me Preguntó,5,0
-SPIT IN MY FACE!,8,1
-The Color Violet,6,0
-Jimmy Cooks (feat. 21 Savage),0,1
-Ditto,6,0
-You Proof,9,1
-Lavender Haze,10,1
-Heart To Heart,8,0
-Me Porto Bonito,1,0
-I Ain't Worried,0,1
-Dark Red,6,1
-OMG,9,0
-WAIT FOR U (feat. Drake & Tems),1,1
-La Jumpa,9,1
-Good Days,1,0
-Too Many Nights (feat. Don Toliver & with Future),7,0
-505,0,1
-Out thë way,4,0
-No Se Va - En Vivo,0,1
-Niagara Falls (Foot or 2) [with Travis Scott & 21 Savage],2,1
+Name,Key,Mode,Key Signature
+Flowers,0,1,C Major
+Kill Bill,8,1,A♭ Major
+Creepin' (with The Weeknd & 21 Savage),1,0,C♯/D♭ Minor
+Superhero (Heroes & Villains) [with Future & Chris Brown],5,0,F Minor
+"Shakira: Bzrp Music Sessions, Vol. 53",2,0,D Minor
+Rich Flex,11,0,B/C♭ Minor
+Just Wanna Rock,11,1,B/C♭ Major
+golden hour,4,1,E Major
+Bad Habit,1,1,C♯/D♭ Major
+Anti-Hero,4,1,E Major
+Sure Thing,11,0,B/C♭ Minor
+Die For You,1,0,C♯/D♭ Minor
+Something in the Orange,4,0,E Minor
+Romantic Homicide,6,1,F♯/G♭ Major
+Unholy (feat. Kim Petras),2,1,D Major
+Snooze,5,1,F Major
+Low,0,0,C Minor
+Bebe Dame,7,1,G Major
+Nobody Gets Me,7,1,G Major
+As It Was,6,0,F♯/G♭ Minor
+Here With Me,4,1,E Major
+Shirt,3,0,E♭ Minor
+Escapism.,2,1,D Major
+Blind,9,0,A Minor
+Nonsense,8,1,A♭ Major
+I'm Good (Blue),7,0,G Minor
+Sweater Weather,10,1,B♭ Major
+No Role Modelz,10,0,B♭ Minor
+Que Vuelvas,10,1,B♭ Major
+SPIT IN MY FACE!,8,1,A♭ Major
+Shut up My Moms Calling,9,0,A Minor
+The Color Violet,6,0,F♯/G♭ Minor
+Ditto,6,0,F♯/G♭ Minor
+Jimmy Cooks (feat. 21 Savage),0,1,C Major
+You Proof,9,1,A Major
+Tití Me Preguntó,5,0,F Minor
+I Ain't Worried,0,1,C Major
+Lavender Haze,10,1,B♭ Major
+Heart To Heart,8,0,A♭ Minor
+Me Porto Bonito,1,0,C♯/D♭ Minor
+OMG,9,0,A Minor
+Dark Red,6,1,F♯/G♭ Major
+Good Days,1,0,C♯/D♭ Minor
+La Jumpa,9,1,A Major
+WAIT FOR U (feat. Drake & Tems),1,1,C♯/D♭ Major
+Too Many Nights (feat. Don Toliver & with Future),7,0,G Minor
+Rock and A Hard Place,1,1,C♯/D♭ Major
+505,0,1,C Major
+Wasted On You,11,0,B/C♭ Minor
+Niagara Falls (Foot or 2) [with Travis Scott & 21 Savage],2,1,D Major

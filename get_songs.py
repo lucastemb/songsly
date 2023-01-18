@@ -2,9 +2,6 @@ import spotipy
 import os 
 from spotipy import SpotifyOAuth
 from notes import notes
-from notes import major
-from notes import minor
-from notes import header
 import csv
 
 #returns spotify authentication
@@ -19,12 +16,13 @@ spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
 tft=spotify.playlist_items(playlist_id=tfuri, market="US", limit=50) 
 songs = []
 major, minor = "Major", "Minor"
-header = ['Name', 'Key', 'Mode']
+header = ['Name', 'Key', 'Mode', 'Key Signature']
 for track in tft["items"]:
     song_feat= spotify.audio_features(track['track']['href'][34:])
     key=song_feat[0]['key']
     mode=song_feat[0]['mode']
-    songs.append([track['track']['name'], str(key), str(mode)])
+    kam=notes[key] + (" Major" if mode == 1 else " Minor")
+    songs.append([track['track']['name'], str(key), str(mode), kam])
     #print("Name: " + track['track']['name'] + " Key: " + notes[key] + " " + (major if mode == 1 else minor))
 
 with open("songs.csv", 'w') as csvfile:
