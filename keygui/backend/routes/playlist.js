@@ -1,10 +1,11 @@
 const express = require('express')
+const {
+    getPlaylist
+} = require("../controllers/playlistController")
 
 const router = express.Router()
 
-router.get('/', (request, response) => {
-    response.json({message: "Billboard Top 100"})
-})
+router.get('/', getPlaylist)
 
 
 router.get('/:id', (request, response) => {
