@@ -1,7 +1,36 @@
+import {useEffect, useState} from 'react'
+
+
 const Home = () => {
+    const [songs, setSongs] = useState(null)
+
+    useEffect(()=> {
+        const fetchSongs = async () => {
+            const response = await fetch('/home')
+            const json = await response.json()
+
+            if (response.ok){
+                setSongs(json)
+                console.log(json)
+            }
+        }
+        fetchSongs()
+    }, [])
     return (
         <div className="home">
-            <h2>Home</h2>
+            <div className="songs">
+                {songs && songs.map((song, index)=>(
+                    <div key={song._id}>
+                        <h2>{song.name}</h2>
+                        <p>{song.bpm}</p>
+                        <p>{song.time_signature}</p>
+                        <p>{song.artist}</p>
+                        <img src ={song.img}/>
+
+                    </div> 
+
+                ))}
+            </div>
         </div>
     )
 }

@@ -19,7 +19,7 @@ app.use((request, response, next) => {
 
 
 //routes
-app.use('/', playlistRoutes)
+app.use('/home', playlistRoutes)
 
 
 //connect 
