@@ -25,6 +25,7 @@ const Home = () => {
                         <p>{song.bpm}</p>
                         <p>{song.time_signature}</p>
                         <p>{song.artist}</p>
+                        <p> {song.genres} </p>
                         <img src ={song.img}/>
 
                     </div> 
