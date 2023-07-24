@@ -69,3 +69,20 @@ class analyzePlaylist():
             else: 
                 bpm_ranges["40-60 bpm"] = 1 + bpm_ranges.get("40-60 bpm", 0)
         return sorted(bpm_ranges.items(), key=lambda a: int(a[0].split('-')[0]))
+
+    def sortTimeSignature(self):
+        time_signatures={}
+        for track in self.tracks["items"]:
+            song_feat=spotify.audio_features(track['track']['uri'])
+            time_signature=str(song_feat[0]['time_signature'])+"/4"
+            time_signatures[time_signature]=1+time_signatures.get(time_signature,0)
+        return sorted(time_signatures.items(), key=lambda a: a[0])
+
+    def sortMode(self):
+        modes={}
+        for track in self.tracks["items"]:
+            song_feat=spotify.audio_features(track['track']['uri'])
+            mode=song_feat[0]['mode']
+            mom = (" Minor" if mode == 0 else " Major") #mom = minor or major
+            modes[mom]=1+modes.get(mom, 0)
+        return modes
