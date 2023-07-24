@@ -38,6 +38,8 @@ for i in range(7):
         time_signature=str(song_feat[0]['time_signature'])+"/4"
         album_uri=track['track']['album']['uri'][14:] #extract uri of track arist
         genres=[]
+        img=spotify.album(album_uri)["images"][0]["url"]
+
 
         artists=[]
         artist=track['track']['artists']
@@ -54,6 +56,7 @@ for i in range(7):
              "bpm":bpm, 
              "time_signature": time_signature,
              "genres": genres,
+             "img": img
              
         }
         post_id=collection.insert_one(post).inserted_id
