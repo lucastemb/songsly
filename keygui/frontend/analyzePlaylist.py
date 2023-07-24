@@ -29,7 +29,7 @@ class analyzePlaylist():
             keys[kam]=1 + keys.get(kam, 0)
         return keys
 
-    def sortArtists(self):
+    def topArtists(self):
         artist_freq={}
         for track in self.tracks["items"]:
             artist=track['track']['artists']
@@ -37,4 +37,12 @@ class analyzePlaylist():
                 artist_freq[i["name"]]=1 + artist_freq.get(i["name"],0)
         return sorted(artist_freq.items(), key=lambda a: a[1], reverse=True)[0:3]
 
-    
+    def topGenres(self): 
+        genre_freq={}
+        for track in self.tracks["items"]:
+            artist=track['track']['artists']
+            for i in artist:
+                genres=spotify.artist(i["uri"])["genres"]
+                for genre in genres: 
+                    genre_freq[genre] = 1 + genre_freq.get(genre, 0)
+        return sorted(genre_freq.items(), key=lambda a: a[1], reverse=True)[0:3]
