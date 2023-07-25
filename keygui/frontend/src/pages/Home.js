@@ -6,7 +6,7 @@ const Home = () => {
     const [topGenres, setTopGenres] = useState(null)
     const [topArtists, setTopArtists] = useState(null)
     const [keyCounter, setKeyCounter] = useState(null)
-    //const [bpmRangeCounter, setBpmRangeCounter] = useState(null)
+    const [bpmRangeCounter, setBpmRangeCounter] = useState(null)
     // const [keySigantureCounter, setKeySignatureCounter] = useState(null)
     // const [modeCounter, setModeCounter] = useState(null)
 
@@ -19,6 +19,8 @@ const Home = () => {
                 setTopGenres((json[0]["topGenres"])) //extract top genres only, not their frequency 
                 setTopArtists((json[0]["topArtists"])) //extract top artists only, not their frequency
                 setKeyCounter((json[0]["keyCounter"]))
+                setBpmRangeCounter((json[0]["bpmRangeCounter"]))
+                console.log(bpmRangeCounter)
                 
             }
         }
@@ -45,6 +47,17 @@ const Home = () => {
                                         x: Object.keys(keyCounter), 
                                         y: Object.values(keyCounter),
                                         type: 'bar',
+                                    }
+                                ]}/>
+                            }
+                        </div>
+                        <div>
+                            {bpmRangeCounter && 
+                                <Plot data={[
+                                    {
+                                        labels: bpmRangeCounter.map(bpm => bpm[0]), 
+                                        values: bpmRangeCounter.map(bpm => bpm[1]),
+                                        type: 'pie',
                                     }
                                 ]}/>
                             }
