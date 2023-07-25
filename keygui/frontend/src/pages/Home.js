@@ -1,10 +1,11 @@
 import {useEffect, useState} from 'react'
+import Plot from 'react-plotly.js'
 
 
 const Home = () => {
     const [topGenres, setTopGenres] = useState(null)
     const [topArtists, setTopArtists] = useState(null)
-    //const [keyCounter, setKeyCounter] = useState(null)
+    const [keyCounter, setKeyCounter] = useState(null)
     //const [bpmRangeCounter, setBpmRangeCounter] = useState(null)
     // const [keySigantureCounter, setKeySignatureCounter] = useState(null)
     // const [modeCounter, setModeCounter] = useState(null)
@@ -15,15 +16,14 @@ const Home = () => {
             const json = await response.json()
 
             if (response.ok){
-                //setKeyCounter((json[0]["keyCounter"]))
                 setTopGenres((json[0]["topGenres"])) //extract top genres only, not their frequency 
                 setTopArtists((json[0]["topArtists"])) //extract top artists only, not their frequency
+                setKeyCounter((json[0]["keyCounter"]))
+                
             }
         }
         fetchBillboardData()
     }, [])
-
-
 
     return (
         <div className="home">
@@ -32,12 +32,24 @@ const Home = () => {
                         <div> 
                             {/* Need to include topGenres && because it ensures the value is not null */}
                             {topGenres && topGenres.map((genre, item)=>(
-                                <p> {item+1}). {genre[0]} </p>))}
+                                <p key ={item}> {item+1}). {genre[0]} </p>))}
                         </div>
                         <div> 
                             {topArtists && topArtists.map((artist, item)=>(
-                                <p> {item+1}). {artist[0]} </p>))}
+                                <p key={item}> {item+1}). {artist[0]} </p>))}
                         </div>
+                        <div>
+                            {keyCounter && 
+                                <Plot data={[
+                                    {
+                                        x: Object.keys(keyCounter), 
+                                        y: Object.values(keyCounter),
+                                        type: 'bar',
+                                    }
+                                ]}/>
+                            }
+                        </div>
+                        
                     </div> 
             </div>
         </div>

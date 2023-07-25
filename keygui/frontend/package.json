@@ -1,5 +1,5 @@
 {
-  "proxy":"http://localhost:4000/",
+  "proxy": "http://localhost:4000/",
   "name": "keygui",
   "version": "0.1.0",
   "private": true,
@@ -10,8 +10,11 @@
     "dotenv": "^16.3.1",
     "mongoose": "^7.4.0",
     "nodemon": "^3.0.1",
+    "plotly.js": "^2.25.0",
+    "plotly.js-dist": "^2.24.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-plotly.js": "^2.6.0",
     "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
