@@ -7,8 +7,8 @@ const Home = () => {
     const [topArtists, setTopArtists] = useState(null)
     const [keyCounter, setKeyCounter] = useState(null)
     const [bpmRangeCounter, setBpmRangeCounter] = useState(null)
-    // const [keySigantureCounter, setKeySignatureCounter] = useState(null)
-    // const [modeCounter, setModeCounter] = useState(null)
+    const [keySignatureCounter, setKeySignatureCounter] = useState(null)
+    const [modeCounter, setModeCounter] = useState(null)
 
     useEffect(()=> {
         const fetchBillboardData = async () => {
@@ -20,7 +20,8 @@ const Home = () => {
                 setTopArtists((json[0]["topArtists"])) //extract top artists only, not their frequency
                 setKeyCounter((json[0]["keyCounter"]))
                 setBpmRangeCounter((json[0]["bpmRangeCounter"]))
-                console.log(bpmRangeCounter)
+                setKeySignatureCounter((json[0]["keySignatureCounter"]))
+                setModeCounter((json[0]["modeCounter"]))
                 
             }
         }
@@ -57,6 +58,28 @@ const Home = () => {
                                     {
                                         labels: bpmRangeCounter.map(bpm => bpm[0]), 
                                         values: bpmRangeCounter.map(bpm => bpm[1]),
+                                        type: 'pie',
+                                    }
+                                ]}/>
+                            }
+                        </div>
+                        <div>
+                            {keySignatureCounter && 
+                                <Plot data={[
+                                    {
+                                        x: keySignatureCounter.map(ks => ks[0]), 
+                                        y: keySignatureCounter.map(ks => ks[1]),
+                                        type: 'bar',
+                                    }
+                                ]}/>
+                            }
+                        </div>
+                        <div>
+                            {keySignatureCounter && 
+                                <Plot data={[
+                                    {
+                                        label: Object.keys(modeCounter), 
+                                        values: Object.values(modeCounter),
                                         type: 'pie',
                                     }
                                 ]}/>
