@@ -31,17 +31,9 @@ const Home = () => {
     return (
         <div className="home">
             <div className="songs">
-                    <div>
-                        <div> 
-                            {/* Need to include topGenres && because it ensures the value is not null */}
-                            {topGenres && topGenres.map((genre, item)=>(
-                                <p key ={item}> {item+1}). {genre[0]} </p>))}
-                        </div>
-                        <div> 
-                            {topArtists && topArtists.map((artist, item)=>(
-                                <p key={item}> {item+1}). {artist[0]} </p>))}
-                        </div>
-                        <div>
+                    <div className="grid grid-rows-2">
+                        <div className="grid grid-cols-3 justify-items-center overflow-hidden">
+                        <div className="col-span-1">
                             {keyCounter && 
                                 <Plot data={[
                                     {
@@ -51,6 +43,28 @@ const Home = () => {
                                     }
                                 ]}/>
                             }
+                        </div>
+                        <div className="grid items-center col-span-1"> 
+                            {topArtists && topArtists.map((artist, item)=>(
+                                <p className="text-2xl font-medium" key={item}> {item+1}). {artist[0]} </p>))}
+                        </div>
+                        <div className="col-span-1">
+                            {modeCounter && 
+                                <Plot data={[
+                                    {
+                                        label: Object.keys(modeCounter), 
+                                        values: Object.values(modeCounter),
+                                        type: 'pie',
+                                    }
+                                ]}/>
+                            }
+                        </div>
+                        </div>
+                        <div className="grid grid-cols-3 justify-items-center overflow-hidden"> 
+                        <div className="grid items-center col-span-1"> 
+                            {/* Need to include topGenres && because it ensures the value is not null */}
+                            {topGenres && topGenres.map((genre, item)=>(
+                                <p className="text-2xl font-medium" key ={item}> {item+1}). {genre[0].charAt(0).toUpperCase() + genre[0].slice(1)} </p>))}
                         </div>
                         <div>
                             {bpmRangeCounter && 
@@ -74,16 +88,6 @@ const Home = () => {
                                 ]}/>
                             }
                         </div>
-                        <div>
-                            {keySignatureCounter && 
-                                <Plot data={[
-                                    {
-                                        label: Object.keys(modeCounter), 
-                                        values: Object.values(modeCounter),
-                                        type: 'pie',
-                                    }
-                                ]}/>
-                            }
                         </div>
                         
                     </div> 
