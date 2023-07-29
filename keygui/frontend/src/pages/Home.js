@@ -32,35 +32,35 @@ const Home = () => {
         <div className="home">
             <div className="songs">
                     <div className="grid grid-rows-2">
-                        <div className="grid grid-cols-3 justify-items-center overflow-hidden">
-                        <div className="col-span-1">
+                        <div className="grid grid-cols-3 justify-items-center">
+                        <div className="col-span-1 overflow-hidden">
                             {keyCounter && 
-                                <Plot data={[
+                                <Plot style={{width: "33vw",height:"50vh"}} layout={{title: "Keys"}} data={[
                                     {
                                         x: Object.keys(keyCounter), 
                                         y: Object.values(keyCounter),
-                                        type: 'bar',
+                                        type: 'bar'
                                     }
-                                ]}/>
+                                ]} />
                             }
                         </div>
-                        <div className="grid items-center col-span-1"> 
+                        <div className="grid items-center col-span-1 overflow-hidden"> 
                             {topArtists && topArtists.map((artist, item)=>(
                                 <p className="text-2xl font-medium" key={item}> {item+1}). {artist[0]} </p>))}
                         </div>
-                        <div className="col-span-1">
+                        <div className="col-span-1 overflow-hidden">
                             {modeCounter && 
-                                <Plot data={[
+                                <Plot style={{width: "33vw",height:"50vh"}} layout={{title: "Modes"}} data={[
                                     {
                                         label: Object.keys(modeCounter), 
                                         values: Object.values(modeCounter),
-                                        type: 'pie',
+                                        type: 'pie'
                                     }
                                 ]}/>
                             }
                         </div>
                         </div>
-                        <div className="grid grid-cols-3 justify-items-center overflow-hidden"> 
+                        <div className="grid grid-cols-3 justify-items-center overflow-hidden gap-y-4"> 
                         <div className="grid items-center col-span-1"> 
                             {/* Need to include topGenres && because it ensures the value is not null */}
                             {topGenres && topGenres.map((genre, item)=>(
@@ -68,7 +68,7 @@ const Home = () => {
                         </div>
                         <div>
                             {bpmRangeCounter && 
-                                <Plot data={[
+                                <Plot style={{width: "33vw",height:"50vh"}} data={[
                                     {
                                         labels: bpmRangeCounter.map(bpm => bpm[0]), 
                                         values: bpmRangeCounter.map(bpm => bpm[1]),
@@ -79,7 +79,7 @@ const Home = () => {
                         </div>
                         <div>
                             {keySignatureCounter && 
-                                <Plot data={[
+                                <Plot style={{width: "33vw",height:"50vh"}} data={[
                                     {
                                         x: keySignatureCounter.map(ks => ks[0]), 
                                         y: keySignatureCounter.map(ks => ks[1]),
