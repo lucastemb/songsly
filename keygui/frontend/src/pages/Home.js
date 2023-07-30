@@ -10,7 +10,7 @@ const Home = () => {
     const [keySignatureCounter, setKeySignatureCounter] = useState(null)
     const [modeCounter, setModeCounter] = useState(null)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-    const graphInit = (windowWidth > 768 ? ["33vw", "50vh"] : ["85vw", "50vh"])
+    const graphInit = (windowWidth > 768 ? ["100%", "100%"] : ["100%", "100%"])
     const [graphSize, setGraphSize] = useState(graphInit)
 
     const detectWidth = () =>{
@@ -41,21 +41,21 @@ const Home = () => {
         return()=> {
             window.removeEventListener('resize', detectWidth)
             if (windowWidth < 768){
-                setGraphSize(["85vw", "50vh"])
+                setGraphSize(["100%", "100%"])
             }
             else {
-                setGraphSize(["33vw","50vh"])
+                setGraphSize(["100%", "100%"])
             }
         }
         
     }, [windowWidth])
 
     return (
-        <div className="home bg-gradient-to-r from-green-300 to-green-700 w-full h-full">
-        <div className="songs">
-                <div className="grid grid-rows-2">
-                    <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center">
-                    <div className="col-span-1 overflow-hidden">
+        <div className="bg-[#191414] w-[100vw] h-[100vh] justify-content-center">
+        {/* the height and width corresponds to the height and width the entire grid takes up */}
+        <div className="grid grid-rows-2 grid-cols-3 grid grid-flow-row-dense gap-4">
+                    {/* <div className="justify-items-center"> */}
+                    <div className="col-span-1 bg-[#4B4848] rounded-lg m-0.25">
                         {keyCounter && 
                             <Plot className="font-semibold tracking-wide" config={{'displayModeBar': false}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} 
                             layout={
@@ -79,13 +79,13 @@ const Home = () => {
                             ]} />
                         }
                     </div>
-                    <div className="grid items-center col-span-1 overflow-hidden"> 
-                        <div>
+                    <div className="col-span-1 items-center bg-[#4B4848] rounded-lg m-0.25"> 
+                        <div className="w-3/4">
                         {topArtists && topArtists.map((artist, item)=>(
                             <p className="text-white text-2xl font-semibold m-3" key={item}> {item+1}). {artist[0]} </p>))}
                         </div> 
                     </div>
-                    <div className="col-span-1 overflow-hidden">
+                    <div className="col-span-1 bg-[#4B4848] rounded-lg m-0.25">
                         {modeCounter && 
                             <Plot className="font-semibold tracking-wide" config={{'displayModeBar': false}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} 
                             layout={
@@ -108,16 +108,16 @@ const Home = () => {
                             ]}/>
                         }
                     </div>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center overflow-hidden gap-y-4"> 
-                    <div className="grid items-center col-span-1"> 
+                    {/* </div> */}
+                    {/* <div className="justify-items-center overflow-hidden gap-y-4">  */}
+                    <div className="col-span-1 grid items-center bg-[#4B4848] rounded-lg m-0.25 col-span-1"> 
                         <div>
                         {/* Need to include topGenres && because it ensures the value is not null */}
                         {topGenres && topGenres.map((genre, item)=>(
                             <p className="text-white text-2xl font-semibold m-3" key ={item}> {item+1}). {genre[0].charAt(0).toUpperCase() + genre[0].slice(1)} </p>))}
                         </div>
                     </div>
-                    <div>
+                    <div className="col-span-1 bg-[#4B4848] rounded-lg m-0.25">
                         {bpmRangeCounter && 
                             <Plot className="font-semibold tracking-wide" 
                             layout={
@@ -139,7 +139,7 @@ const Home = () => {
                             ]}/>
                         }
                     </div>
-                    <div>
+                    <div className="col-span-1 bg-[#4B4848] rounded-lg m-0.25">
                         {keySignatureCounter && 
                             <Plot className="font-semibold tracking-wide" layout={
                                 {
@@ -159,11 +159,10 @@ const Home = () => {
                             ]}/>
                         }
                     </div>
-                    </div>
+                    {/* </div> */}
                     
                 </div> 
         </div>
-    </div>
     )
 }
 
