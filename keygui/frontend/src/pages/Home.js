@@ -32,7 +32,7 @@ const Home = () => {
         <div className="home">
             <div className="songs">
                     <div className="grid grid-rows-2">
-                        <div className="grid grid-cols-3 justify-items-center">
+                        <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center">
                         <div className="col-span-1 overflow-hidden">
                             {keyCounter && 
                                 <Plot useResizeHandler={true} style={{width: "33vw",height:"50vh"}} layout={{title: "Keys"}} data={[
@@ -62,7 +62,7 @@ const Home = () => {
                             }
                         </div>
                         </div>
-                        <div className="grid grid-cols-3 justify-items-center overflow-hidden gap-y-4"> 
+                        <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center overflow-hidden gap-y-4"> 
                         <div className="grid items-center col-span-1"> 
                             <div>
                             {/* Need to include topGenres && because it ensures the value is not null */}
