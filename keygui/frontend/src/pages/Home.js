@@ -10,7 +10,7 @@ const Home = () => {
     const [keySignatureCounter, setKeySignatureCounter] = useState(null)
     const [modeCounter, setModeCounter] = useState(null)
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-    const graphInit = (windowWidth > 768 ? ["33vw", "50vh", true] : ["85vw", "50vh", false])
+    const graphInit = (windowWidth > 768 ? ["33vw", "50vh"] : ["85vw", "50vh"])
     const [graphSize, setGraphSize] = useState(graphInit)
 
     const detectWidth = () =>{
@@ -41,23 +41,23 @@ const Home = () => {
         return()=> {
             window.removeEventListener('resize', detectWidth)
             if (windowWidth < 768){
-                setGraphSize(["85vw", "50vh", false])
+                setGraphSize(["85vw", "50vh"])
             }
             else {
-                setGraphSize(["33vw","50vh", true])
+                setGraphSize(["33vw","50vh"])
             }
         }
         
     }, [windowWidth])
 
     return (
-        <div className="home">
+        <div className="home bg-gradient-to-r from-green-300 to-green-700 w-full h-full">
         <div className="songs">
                 <div className="grid grid-rows-2">
                     <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center">
                     <div className="col-span-1 overflow-hidden">
                         {keyCounter && 
-                            <Plot useResizeHandler={graphSize[2]} style={{width: graphSize[0], height: graphSize[1]}} layout={{title: "Keys"}} data={[
+                            <Plot layout={{paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)'}} config={{'displayModeBar': false, 'staticPlot': true}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} layout={{title: "Keys"}} data={[
                                 {
                                     x: Object.keys(keyCounter), 
                                     y: Object.values(keyCounter),
@@ -74,7 +74,7 @@ const Home = () => {
                     </div>
                     <div className="col-span-1 overflow-hidden">
                         {modeCounter && 
-                            <Plot useResizeHandler={graphSize[2]} style={{width: graphSize[0], height: graphSize[1]}} layout={{title: "Modes"}} data={[
+                            <Plot layout={{paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)'}} config={{'displayModeBar': false, 'staticPlot': true}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} layout={{title: "Modes"}} data={[
                                 {
                                     label: Object.keys(modeCounter), 
                                     values: Object.values(modeCounter),
@@ -94,7 +94,7 @@ const Home = () => {
                     </div>
                     <div>
                         {bpmRangeCounter && 
-                            <Plot useResizeHandler={graphSize[2]} style={{width: graphSize[0], height: graphSize[1]}} data={[
+                            <Plot layout={{paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)'}} config={{'displayModeBar': false, 'staticPlot': true}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} data={[
                                 {
                                     labels: bpmRangeCounter.map(bpm => bpm[0]), 
                                     values: bpmRangeCounter.map(bpm => bpm[1]),
@@ -105,7 +105,7 @@ const Home = () => {
                     </div>
                     <div>
                         {keySignatureCounter && 
-                            <Plot useResizeHandler={graphSize[2]} style={{width: graphSize[0], height: graphSize[1]}} data={[
+                            <Plot layout={{paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)'}} config={{'displayModeBar': false, 'staticPlot': true}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} data={[
                                 {
                                     x: keySignatureCounter.map(ks => ks[0]), 
                                     y: keySignatureCounter.map(ks => ks[1]),
