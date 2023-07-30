@@ -35,7 +35,7 @@ const Home = () => {
                         <div className="grid grid-cols-3 justify-items-center">
                         <div className="col-span-1 overflow-hidden">
                             {keyCounter && 
-                                <Plot style={{width: "33vw",height:"50vh"}} layout={{title: "Keys"}} data={[
+                                <Plot useResizeHandler={true} style={{width: "33vw",height:"50vh"}} layout={{title: "Keys"}} data={[
                                     {
                                         x: Object.keys(keyCounter), 
                                         y: Object.values(keyCounter),
@@ -50,7 +50,7 @@ const Home = () => {
                         </div>
                         <div className="col-span-1 overflow-hidden">
                             {modeCounter && 
-                                <Plot style={{width: "33vw",height:"50vh"}} layout={{title: "Modes"}} data={[
+                                <Plot useResizeHandler={true} style={{width: "33vw",height:"50vh"}} layout={{title: "Modes"}} data={[
                                     {
                                         label: Object.keys(modeCounter), 
                                         values: Object.values(modeCounter),
@@ -68,7 +68,7 @@ const Home = () => {
                         </div>
                         <div>
                             {bpmRangeCounter && 
-                                <Plot style={{width: "33vw",height:"50vh"}} data={[
+                                <Plot useResizeHandler={true} style={{width: "33vw",height:"50vh"}} data={[
                                     {
                                         labels: bpmRangeCounter.map(bpm => bpm[0]), 
                                         values: bpmRangeCounter.map(bpm => bpm[1]),
@@ -79,7 +79,7 @@ const Home = () => {
                         </div>
                         <div>
                             {keySignatureCounter && 
-                                <Plot style={{width: "33vw",height:"50vh"}} data={[
+                                <Plot useResizeHandler={true} style={{width: "33vw",height:"50vh"}} data={[
                                     {
                                         x: keySignatureCounter.map(ks => ks[0]), 
                                         y: keySignatureCounter.map(ks => ks[1]),
