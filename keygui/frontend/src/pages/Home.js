@@ -57,7 +57,7 @@ const Home = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 justify-items-center">
                     <div className="col-span-1 overflow-hidden">
                         {keyCounter && 
-                            <Plot layout={{paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)'}} config={{'displayModeBar': false, 'staticPlot': true}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} layout={{title: "Keys"}} data={[
+                            <Plot config={{'displayModeBar': false, 'staticPlot': true}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} layout={{title: "Keys", paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)'}} data={[
                                 {
                                     x: Object.keys(keyCounter), 
                                     y: Object.values(keyCounter),
@@ -69,12 +69,12 @@ const Home = () => {
                     <div className="grid items-center col-span-1 overflow-hidden"> 
                         <div>
                         {topArtists && topArtists.map((artist, item)=>(
-                            <p className="text-2xl font-medium m-3" key={item}> {item+1}). {artist[0]} </p>))}
+                            <p className="text-white text-2xl font-semibold m-3" key={item}> {item+1}). {artist[0]} </p>))}
                         </div> 
                     </div>
                     <div className="col-span-1 overflow-hidden">
                         {modeCounter && 
-                            <Plot layout={{paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)'}} config={{'displayModeBar': false, 'staticPlot': true}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} layout={{title: "Modes"}} data={[
+                            <Plot config={{'displayModeBar': false, 'staticPlot': true}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} layout={{title: "Modes", paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:'rgba(0,0,0,0)'}} data={[
                                 {
                                     label: Object.keys(modeCounter), 
                                     values: Object.values(modeCounter),
@@ -89,7 +89,7 @@ const Home = () => {
                         <div>
                         {/* Need to include topGenres && because it ensures the value is not null */}
                         {topGenres && topGenres.map((genre, item)=>(
-                            <p className="text-2xl font-medium m-3" key ={item}> {item+1}). {genre[0].charAt(0).toUpperCase() + genre[0].slice(1)} </p>))}
+                            <p className="text-white text-2xl font-semibold m-3" key ={item}> {item+1}). {genre[0].charAt(0).toUpperCase() + genre[0].slice(1)} </p>))}
                         </div>
                     </div>
                     <div>
