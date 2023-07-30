@@ -45,8 +45,10 @@ const Home = () => {
                             }
                         </div>
                         <div className="grid items-center col-span-1 overflow-hidden"> 
+                            <div>
                             {topArtists && topArtists.map((artist, item)=>(
-                                <p className="text-2xl font-medium" key={item}> {item+1}). {artist[0]} </p>))}
+                                <p className="text-2xl font-medium m-3" key={item}> {item+1}). {artist[0]} </p>))}
+                            </div> 
                         </div>
                         <div className="col-span-1 overflow-hidden">
                             {modeCounter && 
@@ -62,9 +64,11 @@ const Home = () => {
                         </div>
                         <div className="grid grid-cols-3 justify-items-center overflow-hidden gap-y-4"> 
                         <div className="grid items-center col-span-1"> 
+                            <div>
                             {/* Need to include topGenres && because it ensures the value is not null */}
                             {topGenres && topGenres.map((genre, item)=>(
-                                <p className="text-2xl font-medium" key ={item}> {item+1}). {genre[0].charAt(0).toUpperCase() + genre[0].slice(1)} </p>))}
+                                <p className="text-2xl font-medium m-3" key ={item}> {item+1}). {genre[0].charAt(0).toUpperCase() + genre[0].slice(1)} </p>))}
+                            </div>
                         </div>
                         <div>
                             {bpmRangeCounter && 
