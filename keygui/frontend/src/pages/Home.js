@@ -51,17 +51,17 @@ const Home = () => {
     }, [windowWidth])
 
     return (
-        <div className="flex flex-col bg-[#191414] h-[100vh] w-[100vw] justify-center items-center">
+        <div className="flex flex-col bg-[#191414] justify-center items-center">
         <div className="flex flex-col justify-center items-center h-[100%] w-[80%]"> 
         <div className="flex w-full justify-center items-center pt-3"> 
-           <h2 className="text-jakarta font-bold text-white text-3xl"> Billboard Top 100 </h2>
+           <h1 className="text-jakarta font-bold text-white text-4xl"> Billboard Top 100 </h1>
         </div>
         <div className="flex w-full justify-center items-center pt-3 pb-3"> 
             <input placeholder="Sorry, this search bar currently doesn't work. Try again later!" className="rounded-lg w-3/4 h-10 text-jakarta font-semibold m-4" type="text"/>
         </div>
         <div className="grid grid-rows-2 grid-cols-3 grid grid-flow-row-dense gap-4 h-[100%] w-[100%]">
                     {/* <div className="justify-items-center"> */}
-                    <div className="col-span-1 bg-[#4B4848] rounded-lg">
+                    <div className="col-span-1 bg-[#4B4848] rounded-lg h-80">
                         {keyCounter && 
                             <Plot className="font-semibold tracking-wide" config={{'displayModeBar': false}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} 
                             layout={
