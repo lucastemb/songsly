@@ -63,9 +63,10 @@ const Home = () => {
                                 paper_bgcolor:'rgba(0,0,0,0)', 
                                 plot_bgcolor:'rgba(0,0,0,0)',
                                 font:{
-                                    family: 'Arial',
+                                    family: 'Plus Jakarta Sans',
                                     color: 'white',
                                 },
+                                colorway: ['#1DB954', '#6FF29D','#26F06D','#347049','#1EBD56'] 
                                 
     
                             }
@@ -79,7 +80,7 @@ const Home = () => {
                             ]} />
                         }
                     </div>
-                    <div className="flex justify-center col-span-1 items-center bg-[#4B4848] rounded-lg m-0.25"> 
+                    <div className="flex font-jakarta justify-center col-span-1 items-center bg-[#4B4848] rounded-lg m-0.25"> 
                         <div>
                         {topArtists && topArtists.map((artist, item)=>(
                             <p className="text-white text-2xl font-semibold m-3" key={item}> {item+1}). {artist[0]} </p>))}
@@ -93,7 +94,7 @@ const Home = () => {
                                 paper_bgcolor:'rgba(0,0,0,0)', 
                                 plot_bgcolor:'rgba(0,0,0,0)',
                                 font:{
-                                    family: 'Arial',
+                                    family: 'Plus Jakarta Sans',
                                     color: 'white',
                                 },
                                 colorway: ['#1DB954', '#6FF29D','#26F06D','#347049','#1EBD56']   
@@ -110,7 +111,7 @@ const Home = () => {
                     </div>
                     {/* </div> */}
                     {/* <div className="justify-items-center overflow-hidden gap-y-4">  */}
-                    <div className="flex justify-center col-span-1 grid items-center bg-[#4B4848] rounded-lg m-0.25 col-span-1"> 
+                    <div className="flex font-jakarta justify-center col-span-1 grid items-center bg-[#4B4848] rounded-lg m-0.25 col-span-1"> 
                         <div>
                         {/* Need to include topGenres && because it ensures the value is not null */}
                         {topGenres && topGenres.map((genre, item)=>(
@@ -124,10 +125,10 @@ const Home = () => {
                                 {paper_bgcolor:'rgba(0,0,0,0)', 
                                 plot_bgcolor:'rgba(0,0,0,0)', 
                                 font:{
-                                family: 'Arial',
+                                family: 'Plus Jakarta Sans',
                                 color: 'white',
                                 },
-                                title: "<b> Bpm Ranges </b>",
+                                title: "<b>Bpm Ranges</b>",
                                 colorway: ['#1DB954', '#6FF29D','#26F06D','#347049','#1EBD56']   
                                 }
                             } 
@@ -147,9 +148,11 @@ const Home = () => {
                                     paper_bgcolor:'rgba(0,0,0,0)', 
                                     plot_bgcolor:'rgba(0,0,0,0)', 
                                     font:{
-                                    family: 'Arial',
+                                    family: 'Plus Jakarta Sans',
                                     color: 'white',
-                                    }
+                                    },
+                                    title: "<b>Key Signatures</b>",
+                                    colorway: ['#1DB954', '#6FF29D','#26F06D','#347049','#1EBD56'] 
                                 }
                             } config={{'displayModeBar': false}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} data={[
                                 {
