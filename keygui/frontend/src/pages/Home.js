@@ -51,9 +51,9 @@ const Home = () => {
     }, [windowWidth])
 
     return (
-        <div className="bg-[#191414] w-[100vw] h-[100vh] justify-content-center">
+        <div className="flex bg-[#191414] w-[100vw] h-[100vh] justify-center items-center">
         {/* the height and width corresponds to the height and width the entire grid takes up */}
-        <div className="grid grid-rows-2 grid-cols-3 grid grid-flow-row-dense gap-4 h-[100%] w-[100%]">
+        <div className="grid grid-rows-2 grid-cols-3 grid grid-flow-row-dense gap-4 h-[90%] w-[80%]">
                     {/* <div className="justify-items-center"> */}
                     <div className="col-span-1 bg-[#4B4848] rounded-lg">
                         {keyCounter && 
@@ -85,7 +85,7 @@ const Home = () => {
                             <p className="text-white text-2xl font-semibold m-3" key={item}> {item+1}). {artist[0]} </p>))}
                         </div> 
                     </div>
-                    <div className="col-span-1 bg-[#4B4848] rounded-lg m-0.25">
+                    <div className="flex justify-center items-center col-span-1 bg-[#4B4848] rounded-lg m-0.25">
                         {modeCounter && 
                             <Plot className="font-semibold tracking-wide" config={{'displayModeBar': false}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} 
                             layout={
@@ -117,7 +117,7 @@ const Home = () => {
                             <p className="text-white text-2xl font-semibold m-3" key ={item}> {item+1}). {genre[0].charAt(0).toUpperCase() + genre[0].slice(1)} </p>))}
                         </div>
                     </div>
-                    <div className="col-span-1 bg-[#4B4848] rounded-lg m-0.25">
+                    <div className="col-span-1 bg-[#4B4848] rounded-lg">
                         {bpmRangeCounter && 
                             <Plot className="font-semibold tracking-wide" 
                             layout={
@@ -127,6 +127,7 @@ const Home = () => {
                                 family: 'Arial',
                                 color: 'white',
                                 },
+                                title: "<b> Bpm Ranges </b>",
                                 colorway: ['#1DB954', '#6FF29D','#26F06D','#347049','#1EBD56']   
                                 }
                             } 
