@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react'
-import Plot from 'react-plotly.js'
+import {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
+import Plot from 'react-plotly.js';
 
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
     const graphInit = (windowWidth > 768 ? ["100%", "100%"] : ["100%", "100%"])
     const [graphSize, setGraphSize] = useState(graphInit)
 
+    const navigate = useNavigate()
     const detectWidth = () =>{
         setWindowWidth(window.innerWidth)
     }
@@ -50,6 +52,8 @@ const Home = () => {
         
     }, [windowWidth])
 
+    
+
     return (
         <div className="flex flex-col bg-[#191414] justify-center items-center">
         <div className="flex flex-col justify-center items-center h-[100%] w-[80%]"> 
@@ -59,7 +63,9 @@ const Home = () => {
         <div className="w-full items-center pt-3 pb-3 m-4"> 
             <form className="w-full flex justify-between bg-white rounded-lg w-3/4">
             <input placeholder="Sorry, this search bar currently doesn't work. Try again later!" className="w-11/12 h-10 text-jakarta font-semibold rounded-lg p-4 focus:outline-none" type="text"/>
-            <button className="text-jakarta text-white bg-[#1DB954] w-1/12 font-semibold rounded-r-lg">Search</button>
+            <button onClick={()=> {
+                navigate('/album')
+            }} className="text-jakarta text-white bg-[#1DB954] w-1/12 font-semibold rounded-r-lg">Search</button>
             </form>
         </div>
         <div className="grid grid-rows-2 grid-cols-3 grid grid-flow-row-dense gap-4 h-[100%] w-[100%] mb-6">
