@@ -51,9 +51,15 @@ const Home = () => {
     }, [windowWidth])
 
     return (
-        <div className="flex bg-[#191414] w-[100vw] h-[100vh] justify-center items-center">
-        {/* the height and width corresponds to the height and width the entire grid takes up */}
-        <div className="grid grid-rows-2 grid-cols-3 grid grid-flow-row-dense gap-4 h-[90%] w-[80%]">
+        <div className="flex flex-col bg-[#191414] h-[100vh] w-[100vw] justify-center items-center">
+        <div className="flex flex-col justify-center items-center h-[100%] w-[80%]"> 
+        <div className="flex w-full justify-center items-center pt-3"> 
+           <h2 className="text-jakarta font-bold text-white text-3xl"> Billboard Top 100 </h2>
+        </div>
+        <div className="flex w-full justify-center items-center pt-3 pb-3"> 
+            <input placeholder="Sorry, this search bar currently doesn't work. Try again later!" className="rounded-lg w-3/4 h-10 text-jakarta font-semibold m-4" type="text"/>
+        </div>
+        <div className="grid grid-rows-2 grid-cols-3 grid grid-flow-row-dense gap-4 h-[100%] w-[100%]">
                     {/* <div className="justify-items-center"> */}
                     <div className="col-span-1 bg-[#4B4848] rounded-lg">
                         {keyCounter && 
@@ -66,7 +72,7 @@ const Home = () => {
                                     family: 'Plus Jakarta Sans',
                                     color: 'white',
                                 },
-                                colorway: ['#1DB954', '#6FF29D','#26F06D','#347049','#1EBD56'] 
+                                colorway: ['#1DB954']
                                 
     
                             }
@@ -162,6 +168,7 @@ const Home = () => {
                                 }
                             ]}/>
                         }
+                        </div>
                     </div>
                     {/* </div> */}
                     
