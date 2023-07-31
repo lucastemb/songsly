@@ -8,7 +8,7 @@ client=MongoClient(os.getenv('URI'),server_api=ServerApi('1'))
 db=client.spotifydata #creates database 
 collection=db.songdata #creates collection that contains the songdata
 
-billboard = analyzePlaylist("6UeSakyzhiEt4NB3UAd6NQ")
+billboard = analyzePlaylist("37i9dQZEVXbLRQDuF5jeBp")
 
 post={
             

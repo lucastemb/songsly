@@ -23,12 +23,12 @@ const Home = () => {
             const json = await response.json()
 
             if (response.ok){
-                setTopGenres((json[0]["topGenres"])) //extract top genres only, not their frequency 
-                setTopArtists((json[0]["topArtists"])) //extract top artists only, not their frequency
-                setKeyCounter((json[0]["keyCounter"]))
-                setBpmRangeCounter((json[0]["bpmRangeCounter"]))
-                setKeySignatureCounter((json[0]["keySignatureCounter"]))
-                setModeCounter((json[0]["modeCounter"]))
+                setTopGenres((json[json.length-1]["topGenres"])) //extract top genres only, not their frequency 
+                setTopArtists((json[json.length-1]["topArtists"])) //extract top artists only, not their frequency
+                setKeyCounter((json[json.length-1]["keyCounter"]))
+                setBpmRangeCounter((json[json.length-1]["bpmRangeCounter"]))
+                setKeySignatureCounter((json[json.length-1]["keySignatureCounter"]))
+                setModeCounter((json[json.length-1]["modeCounter"]))
                 
             }
         }
@@ -53,13 +53,16 @@ const Home = () => {
     return (
         <div className="flex flex-col bg-[#191414] justify-center items-center">
         <div className="flex flex-col justify-center items-center h-[100%] w-[80%]"> 
-        <div className="flex w-full justify-center items-center pt-3"> 
-           <h1 className="text-jakarta font-bold text-white text-4xl"> Billboard Top 100 </h1>
+        <div className="flex w-full justify-center items-center pt-4"> 
+           <h1 className="text-jakarta font-bold text-white text-4xl"> Songsly </h1>
         </div>
-        <div className="flex w-full justify-center items-center pt-3 pb-3"> 
-            <input placeholder="Sorry, this search bar currently doesn't work. Try again later!" className="rounded-lg w-3/4 h-10 text-jakarta font-semibold m-4" type="text"/>
+        <div className="w-full items-center pt-3 pb-3 m-4"> 
+            <form className="w-full flex justify-between bg-white rounded-lg w-3/4">
+            <input placeholder="Sorry, this search bar currently doesn't work. Try again later!" className="w-11/12 h-10 text-jakarta font-semibold rounded-lg p-4 focus:outline-none" type="text"/>
+            <button className="text-jakarta text-white bg-[#1DB954] w-1/12 font-semibold rounded-r-lg">Search</button>
+            </form>
         </div>
-        <div className="grid grid-rows-2 grid-cols-3 grid grid-flow-row-dense gap-4 h-[100%] w-[100%]">
+        <div className="grid grid-rows-2 grid-cols-3 grid grid-flow-row-dense gap-4 h-[100%] w-[100%] mb-6">
                     {/* <div className="justify-items-center"> */}
                     <div className="col-span-1 bg-[#4B4848] rounded-lg h-80">
                         {keyCounter && 
