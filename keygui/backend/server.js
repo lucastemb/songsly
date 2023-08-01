@@ -5,6 +5,8 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const playlistRoutes = require('./routes/playlist')
+const router = express.Router()
+
 
 //express
 const app = express()
@@ -16,7 +18,6 @@ app.use((request, response, next) => {
     console.log(request.path, request.method)
     next()
 })
-
 
 //routes
 app.use('/home', playlistRoutes)
@@ -32,4 +33,5 @@ mongoose.connect(process.env.MONGO_URI, {
         })
     })
     .catch((error)=>{console.log(error)})
+
 
