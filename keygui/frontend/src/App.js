@@ -3,7 +3,7 @@ import {SpotifyApiContext} from 'react-spotify-api'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Home from './pages/Home'
-import Album from './pages/Album'
+import AlbumAnalysis from './pages/AlbumAnalysis'
 
 
 
@@ -17,7 +17,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path ="/" element={<Home/>}/>
-              <Route path="/album" element={<Album/>}/>
+              <Route path="/album" element={<AlbumAnalysis uri={"https://open.spotify.com/album/2k8KgmDp9oHrmu0MIj4XDE?si=FXRBNRVwTbSIHiCWYEb7cg"}/>}/>
             </Routes>
           </BrowserRouter>
           </SpotifyApiContext.Provider>
