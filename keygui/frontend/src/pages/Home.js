@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Plot from 'react-plotly.js';
 
 
-const Home = () => {
+const Home = ({setUri}) => {
     const [topGenres, setTopGenres] = useState(null)
     const [topArtists, setTopArtists] = useState(null)
     const [keyCounter, setKeyCounter] = useState(null)
@@ -13,6 +13,8 @@ const Home = () => {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const graphInit = (windowWidth > 768 ? ["100%", "100%"] : ["100%", "100%"])
     const [graphSize, setGraphSize] = useState(graphInit)
+    //album uri
+    const [album, setAlbum] = useState(null)
 
     const navigate = useNavigate()
     const detectWidth = () =>{
@@ -63,8 +65,9 @@ const Home = () => {
         </div>
         <div className="w-full items-center pt-3 pb-3 m-4"> 
             <form className="w-full flex justify-between bg-white rounded-lg w-3/4">
-            <input placeholder="Sorry, this search bar currently doesn't work. Try again later!" className="w-11/12 h-10 text-jakarta font-semibold rounded-lg p-4 focus:outline-none" type="text"/>
+            <input onChange={e=> setAlbum(e.target.value)} placeholder="Sorry, this search bar currently doesn't work. Try again later!" className="w-11/12 h-10 text-jakarta font-semibold rounded-lg p-4 focus:outline-none" type="text"/>
             <button onClick={()=> {
+                setUri(album)
                 navigate('/album')
             }} className="text-jakarta text-white bg-[#1DB954] w-1/12 font-semibold rounded-r-lg">Search</button>
             </form>
@@ -188,3 +191,4 @@ const Home = () => {
 }
 
 export default Home
+export const isthisit = "https://open.spotify.com/album/2k8KgmDp9oHrmu0MIj4XDE?si=FXRBNRVwTbSIHiCWYEb7cg"

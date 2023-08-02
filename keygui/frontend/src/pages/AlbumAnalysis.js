@@ -5,7 +5,7 @@ import React from 'react'
 
 const AlbumAnalysis = (props) =>{
     return(
-     <h1> {props.uri} </h1>
+     <h1> {props.uri.substring(31,53)} </h1>
     )
 }
 
