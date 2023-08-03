@@ -14,16 +14,26 @@ const Album = ({album}) => {
     }
 
     return(
-    <div>
+    <div className="flex justify-center flex-col">
         
-        <h2> {album.name} </h2>
+        <div>
+        <h2 className="font-jakarta font-semibold"> {album.name} </h2>
+        </div>
         <div> 
             
             {album.tracks && album.tracks.map((track, item)=>(
-                <div>
-                <p id={item}> {track.track_number}). {track.name}  {ms_to_s(album.features[item].duration_ms)} </p>
-                <p>{Math.round(album.features[item].tempo)} bpm {album.features[item].time_signature}/4 </p>
+                <div className="flex flex-row justify-center items-center w-full"> 
+                <img className="w-1/6" src={album.images[0].url}></img>
+                <div className="font-jakarta font-semibold flex flex-col h-25">
+                <div className="flex flex-row justify-between">
+                <p classid={item}> {track.name} </p>
+                <p>{album.features[item].time_signature}/4 {ms_to_s(album.features[item].duration_ms)} </p>
+                </div>
+                <div className="flex flex-row justify-between"> 
+                <p>{Math.round(album.features[item].tempo)} Bpm </p>
                 <p> {keys[album.features[item].key]} {mode[album.features[item].mode]} </p>
+                </div>
+                </div>
                 </div>
             ))}
 
