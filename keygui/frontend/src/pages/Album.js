@@ -24,7 +24,7 @@ const Album = ({album}) => {
             
             {album.tracks && album.tracks.map((track, item)=>(
                 <div className="grid grid-cols-[25%_75%] w-full items-center bg-[#4B4848] rounded-2xl text-white mt-6 mb-6"> 
-                <img alt="Album Image" className="w-3/4 mt-2 mb-2 ml-2" src={album.images[0].url}></img>
+                <img alt="Album" className="w-3/4 mt-2 mb-2 ml-2" src={album.images[0].url}></img>
                 <div className="font-jakarta font-semibold flex flex-col mr-6">
                 <div className="flex flex-row justify-between">
                 <p classid={item}> {track.name} </p>
