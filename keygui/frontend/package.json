@@ -1,5 +1,4 @@
 {
-  "proxy": "https://us-central1-songsly-ec779.cloudfunctions.net/app",
   "name": "keygui",
   "version": "0.1.0",
   "private": true,
