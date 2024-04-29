@@ -43,41 +43,42 @@ router.get('/login', (req, res)=>{
     res.redirect(spotifyApi.createAuthorizeURL(scopes))
 })
 
-router.get('/callback', (req,res)=>{
+router.get('/callback', (req, res) => {
     const error = req.query.error;
     const code = req.query.code;
 
     if (error) {
         console.error('Callback Error:', error);
-        res.send(`Callback Error: ${error}`);
-        return;
+        return res.status(400).send(`Callback Error: ${error}`);
     }
 
-    // Exchange the code for an access token and a refresh token.
+    // Exchange the code for an access token and a refresh token
     spotifyApi.authorizationCodeGrant(code).then(data => {
-        const accessToken = data.body['access_token'];
-        const refreshToken = data.body['refresh_token'];
-        const expiresIn = data.body['expires_in'];
+        const { access_token, refresh_token, expires_in } = data.body;
 
-        // Set the access token and refresh token on the Spotify API object.
-        spotifyApi.setAccessToken(accessToken);
-        spotifyApi.setRefreshToken(refreshToken);
+        // Set the access token and refresh token on the Spotify API object
+        spotifyApi.setAccessToken(access_token);
+        spotifyApi.setRefreshToken(refresh_token);
 
-        // Send a success message to the user.
-        res.send('Login successful!');
+        // Redirect the user after successful login
+        res.redirect("https://songsly-ec779.web.app/home");
 
-        // Refresh the access token periodically before it expires.
+        // Set up token refresh logic
         setInterval(async () => {
-            const data = await spotifyApi.refreshAccessToken();
-            const accessTokenRefreshed = data.body['access_token'];
-            spotifyApi.setAccessToken(accessTokenRefreshed);
-        }, expiresIn / 2 * 1000); // Refresh halfway before expiration.
+            try {
+                const refreshData = await spotifyApi.refreshAccessToken();
+                spotifyApi.setAccessToken(refreshData.body['access_token']);
+                console.log('Access Token Refreshed Successfully');
+            } catch (refreshError) {
+                console.error('Error Refreshing Access Token:', refreshError);
+            }
+        }, (expires_in / 2) * 1000); // Refresh halfway before expiration
 
     }).catch(error => {
         console.error('Error getting Tokens:', error);
-        res.send('Error getting tokens');
+        res.status(500).send('Error getting tokens');
     });
-})
+});
 
 router.get('/album-analysis/:uri', async (req, res) => {
     try {
