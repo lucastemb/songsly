@@ -23,7 +23,7 @@ const Home = ({setUri}) => {
 
     useEffect(()=> {
         const fetchBillboardData = async () => {
-            const response = await fetch('/home')
+            const response = await fetch('https://us-central1-songsly-ec779.cloudfunctions.net/app/home')
             const json = await response.json()
 
             if (response.ok){
@@ -58,7 +58,7 @@ const Home = ({setUri}) => {
     
 
     return (
-        <div className="flex flex-col bg-[#191414] justify-center items-center">
+        <div className="flex flex-col bg-[#191414] h-screen justify-center items-center">
         <div className="flex flex-col justify-center items-center h-[100%] w-[80%]"> 
         <div className="flex w-full justify-center items-center pt-4"> 
            <h1 className="text-jakarta font-bold text-white text-4xl"> Songsly </h1>
@@ -68,13 +68,13 @@ const Home = ({setUri}) => {
             <input onChange={e=> setAlbum(e.target.value)} placeholder="Sorry, this search bar currently doesn't work. Try again later!" className="w-11/12 h-10 text-jakarta font-semibold rounded-lg p-4 focus:outline-none" type="text"/>
             <button onClick={()=> {
                 setUri(album)
-                navigate('/album')
+                navigate('/album/')
             }} className="text-jakarta text-white bg-[#1DB954] w-1/12 font-semibold rounded-r-lg">Search</button>
             </form>
         </div>
         <div className="grid grid-rows-2 grid-cols-3 grid grid-flow-row-dense gap-4 h-[100%] w-[100%] mb-6">
                     {/* <div className="justify-items-center"> */}
-                    <div className="col-span-1 bg-[#4B4848] rounded-lg h-80">
+                    <div className="col-span-1 bg-[#4B4848] h-[100%] rounded-lg h-80">
                         {keyCounter && 
                             <Plot className="font-semibold tracking-wide" config={{'displayModeBar': false}} useResizeHandler={true} style={{width: graphSize[0], height: graphSize[1]}} 
                             layout={
