@@ -61,7 +61,7 @@ router.get('/callback', (req, res) => {
         spotifyApi.setRefreshToken(refresh_token);
 
         // Redirect the user after successful login
-        res.redirect("https://songsly-ec779.web.app/home");
+        res.redirect("https://songsly.netlify.app/home");
 
         // Set up token refresh logic
         setInterval(async () => {
