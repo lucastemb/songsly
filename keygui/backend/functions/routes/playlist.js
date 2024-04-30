@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const SpotifyWebApi = require('spotify-web-api-node')
+const cookieParser = require('cookie-parser');
 
 const spotifyApi = new SpotifyWebApi({
     clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -14,11 +15,13 @@ const {
 
 const router = express.Router()
 router.use(cors());
-router.get('/', getPlaylist)
+router.use(cookieParser());
 
-router.get("/token", (req,res)=>{
-    res.render(process.env.SPOTIFY_REFRESH_TOKEN)
+router.get('/token', (req,res)=> {
+    const { access_token, refresh_token } = req.cookies;
+    res.json({ access_token, refresh_token });
 })
+router.get('/', getPlaylist)
 
 router.get('/login', (req, res)=>{
     scopes=["ugc-image-upload",
@@ -40,39 +43,26 @@ router.get('/login', (req, res)=>{
     "user-library-read",
     "playlist-read-collaborative",
     "streaming"]
+
     res.redirect(spotifyApi.createAuthorizeURL(scopes))
 })
 
 router.get('/callback', (req, res) => {
-    const error = req.query.error;
-    const code = req.query.code;
+    const code  = req.query.code;
 
-    if (error) {
-        console.error('Callback Error:', error);
-        return res.status(400).send(`Callback Error: ${error}`);
-    }
-
-    // Exchange the code for an access token and a refresh token
+    // exchange code for access token 
     spotifyApi.authorizationCodeGrant(code).then(data => {
         const { access_token, refresh_token, expires_in } = data.body;
-
-        // Set the access token and refresh token on the Spotify API object
         spotifyApi.setAccessToken(access_token);
         spotifyApi.setRefreshToken(refresh_token);
 
-        // Redirect the user after successful login
-        res.redirect("https://songsly.netlify.app/home");
+        const expirationTime = Date.now() + (expires_in * 1000);
 
-        // Set up token refresh logic
-        setInterval(async () => {
-            try {
-                const refreshData = await spotifyApi.refreshAccessToken();
-                spotifyApi.setAccessToken(refreshData.body['access_token']);
-                console.log('Access Token Refreshed Successfully');
-            } catch (refreshError) {
-                console.error('Error Refreshing Access Token:', refreshError);
-            }
-        }, (expires_in / 2) * 1000); // Refresh halfway before expiration
+        res.cookie('access_token', access_token);
+        res.cookie('refresh_token', refresh_token);
+        res.cookie('expires_in', expires_in);
+        res.cookie('expiration_time', expirationTime);
+        res.redirect("https://songsly.netlify.app/home");
 
     }).catch(error => {
         console.error('Error getting Tokens:', error);
@@ -80,9 +70,34 @@ router.get('/callback', (req, res) => {
     });
 });
 
-router.get('/album-analysis/:uri', async (req, res) => {
+
+const refreshTokenIfNeeded = (req, res, next) => {
+    const { access_token, refresh_token, expires_in } = req.cookies;
+
+    spotifyApi.setAccessToken(access_token);
+    if (!access_token || Date.now() >= parseInt(req.cookies.expiration_time)) {
+        spotifyApi.refreshAccessToken().then(data => {
+            const newAccessToken = data.body['access_token'];
+
+            const newExpirationTime = Date.now() + (expires_in * 1000);
+            res.cookie('access_token', newAccessToken);
+            res.cookie('expiration_time', newExpirationTime);
+            spotifyApi.setAccessToken(newAccessToken);
+            next();
+        }).catch(err => {
+            console.error('Could not refresh access token', err);
+            res.status(500).send('Failed to refresh access token');
+        });
+    } else {
+        next();
+    }
+}
+
+
+router.get('/album-analysis/:uri', refreshTokenIfNeeded , async (req, res) => {
     try {
         const albumId = req.params.uri; // Extract album ID from URI
+        
         spotifyApi.getAlbum(albumId)
         .then(albumResponse => {
             // Extract track IDs from album response
@@ -98,14 +113,13 @@ router.get('/album-analysis/:uri', async (req, res) => {
                         tracks: albumResponse.body.tracks.items,
                         features: featuresResponse.body.audio_features
                     };
-                    console.log(featuresResponse.body.audio_features);
                     // Send album data as JSON response
                     res.json(albumData);
                 });
         })
         .catch(error => {
             console.error('Error fetching album analysis:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
+            res.status(500).json({ error: 'Internal Server Error', error});
         });
 
         
