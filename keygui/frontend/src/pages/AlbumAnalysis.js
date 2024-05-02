@@ -10,7 +10,7 @@ const AlbumAnalysis = (props) => {
     
     const album_id = props.uri.substring(31,53) //playlist uri
     useEffect(()=> {
-        axios.get(`https://us-central1-songsly-ec779.cloudfunctions.net/app/home/album-analysis/${encodeURIComponent(album_id)}`)
+        axios.get(`https://us-central1-songsly-ec779.cloudfunctions.net/app/home/album-analysis/${encodeURIComponent(album_id)}`, {withCredentials: true})
             .then(response=> {
                 const { name, images, tracks, features} = response.data;
                 setAlbum({

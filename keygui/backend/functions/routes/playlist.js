@@ -52,16 +52,16 @@ router.get('/callback', (req, res) => {
 
     // exchange code for access token 
     spotifyApi.authorizationCodeGrant(code).then(data => {
-        const { access_token, refresh_token, expires_in } = data.body;
+        const access_token = data.body['access_token'];
+        const refresh_token = data.body['refresh_token'];
+        const expires_in = data.body['expires_in'];
         spotifyApi.setAccessToken(access_token);
         spotifyApi.setRefreshToken(refresh_token);
 
         const expirationTime = Date.now() + (expires_in * 1000);
 
-        res.cookie('access_token', access_token);
-        res.cookie('refresh_token', refresh_token);
-        res.cookie('expires_in', expires_in);
-        res.cookie('expiration_time', expirationTime);
+        
+        console.log('Check cookie:', req.cookies)
         res.redirect("https://songsly.netlify.app/home");
 
     }).catch(error => {
@@ -72,17 +72,46 @@ router.get('/callback', (req, res) => {
 
 
 const refreshTokenIfNeeded = (req, res, next) => {
+    console.log("Check the cookies: ", req.cookies);
     const { access_token, refresh_token, expires_in } = req.cookies;
 
     spotifyApi.setAccessToken(access_token);
+    spotifyApi.setRefreshToken(refresh_token);
+    
     if (!access_token || Date.now() >= parseInt(req.cookies.expiration_time)) {
         spotifyApi.refreshAccessToken().then(data => {
+            console.log('Refresh token response:', data.body); // Log the response to see if refresh_token is present
             const newAccessToken = data.body['access_token'];
-
+            const newRefreshToken = data.body['refresh_token'];
             const newExpirationTime = Date.now() + (expires_in * 1000);
-            res.cookie('access_token', newAccessToken);
-            res.cookie('expiration_time', newExpirationTime);
+            const newExpiresIn = data.body['expires_in'];
+            res.cookie('access_token', newAccessToken, { 
+                path: '/',
+                httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
+                secure: true, // Cookie will only be sent over HTTPS
+                sameSite: 'None' // Allows cross-origin requests
+            });
+            res.cookie('refresh_token', newRefreshToken, { 
+                path: '/',
+                httpOnly: true,
+                secure: true,
+                sameSite: 'None'
+            });
+            res.cookie('expires_in', newExpiresIn, { 
+                path: '/',
+                httpOnly: true,
+                secure: true,
+                sameSite: 'None'
+            });
+            res.cookie('expiration_time', newExpirationTime, { 
+                path: '/',
+                httpOnly: true,
+                secure: true,
+                sameSite: 'None'
+            });
+
             spotifyApi.setAccessToken(newAccessToken);
+            spotifyApi.setRefreshToken(newRefreshToken);
             next();
         }).catch(err => {
             console.error('Could not refresh access token', err);
@@ -97,7 +126,6 @@ const refreshTokenIfNeeded = (req, res, next) => {
 router.get('/album-analysis/:uri', refreshTokenIfNeeded , async (req, res) => {
     try {
         const albumId = req.params.uri; // Extract album ID from URI
-        
         spotifyApi.getAlbum(albumId)
         .then(albumResponse => {
             // Extract track IDs from album response
