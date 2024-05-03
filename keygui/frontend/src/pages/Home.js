@@ -5,6 +5,7 @@ import useAuth from '../getAuth';
 
 
 
+const code = new URLSearchParams(window.location.search).get('code');
 
 const Home = ({setUri, setAccessToken}) => {
     const code = new URLSearchParams(window.location.search).get('code');
