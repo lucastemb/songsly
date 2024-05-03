@@ -15,7 +15,7 @@ const useAuth = (code) => {
         }).then(res=> {
             setAccessToken(res.data.accessToken);
             setRefreshToken(res.data.refreshToken);
-            setExpiresIn(res.data.expiresIn);
+            setExpiresIn(61);
             window.history.pushState({},null,"/")
             console.log(res.data);
         }).catch(()=> {
@@ -32,7 +32,7 @@ const useAuth = (code) => {
                 refreshToken,
             }).then(res=> {
                 setAccessToken(res.data.accessToken);
-                setExpiresIn(61);
+                setExpiresIn(res.data.expiresIn);
             }).catch(()=> {
                 window.location = "/"
             })
