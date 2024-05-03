@@ -56,46 +56,6 @@ router.post('/refresh', (req, res) => {
     }).catch(()=> {
         res.sendStatus(400);
     })
-
-
-
 })
-
-
-router.get('/album-analysis/:uri', async (req, res) => {
-    try {
-        const albumId = req.params.uri; // Extract album ID from URI
-        spotifyApi.getAlbum(albumId)
-        .then(albumResponse => {
-            // Extract track IDs from album response
-            const trackIds = albumResponse.body.tracks.items.map(song => song.id);
-    
-            // Get audio features for tracks
-            return spotifyApi.getAudioFeaturesForTracks(trackIds)
-                .then(featuresResponse => {
-                    // Construct album data object
-                    const albumData = {
-                        name: albumResponse.body.name,
-                        images: albumResponse.body.images,
-                        tracks: albumResponse.body.tracks.items,
-                        features: featuresResponse.body.audio_features
-                    };
-                    // Send album data as JSON response
-                    res.json(albumData);
-                });
-        })
-        .catch(error => {
-            console.error('Error fetching album analysis:', error);
-            res.status(500).json({ error: 'Internal Server Error', error});
-        });
-
-        
-    } catch (error) {
-        console.error('Error fetching album analysis:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
-
-
 
 module.exports=router
