@@ -21,6 +21,7 @@ const AlbumAnalysis = (props) => {
         spotifyApi.getAlbum(album_id).then((response)=>{
            (response.body.tracks.items.map((songs)=>{
                 ids.push(songs.id)
+                return songs
             }))
             spotifyApi.getAudioFeaturesForTracks(ids).then((res)=>{
                 console.log(res.body.audio_features)
@@ -35,7 +36,7 @@ const AlbumAnalysis = (props) => {
             
             
         })
-    }, [album_id])
+    }, [album_id,spotifyApi,props.accessToken])
     
     return(
         <Album album={album}/>
