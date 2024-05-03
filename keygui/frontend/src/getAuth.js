@@ -16,7 +16,7 @@ const useAuth = (code) => {
             setAccessToken(res.data.accessToken);
             setRefreshToken(res.data.refreshToken);
             setExpiresIn(res.data.expiresIn);
-
+            window.history.pushState({},null,"/")
             console.log(res.data);
         }).catch(()=> {
             console.log("problem is here!!!!");
