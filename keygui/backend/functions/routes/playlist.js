@@ -10,6 +10,7 @@ const {
 const router = express.Router()
 router.use(cors());
 router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended: true}));
 
 router.get('/', getPlaylist)
 
@@ -29,13 +30,15 @@ router.post('/login', (req, res)=>{
 
         })
     })
-    .catch(()=>{
-    res.sendStatus(400)
+    .catch(error=>{
+        console.error(error);
+        res.sendStatus(400)
     })
 })
 
 router.post('/refresh', (req, res) => {
     const refreshToken = req.body.refreshToken;
+    console.log("woo!");
     const spotifyApi = new SpotifyWebApi({
         clientId: process.env.SPOTIFY_CLIENT_ID,
         clientSecret: process.env.SPOTIFY_CLIENT_SECRET,

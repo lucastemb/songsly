@@ -8,7 +8,7 @@ const useAuth = (code) => {
     const [refreshToken, setRefreshToken] = useState();
     const [expiresIn, setExpiresIn] = useState();
 
-
+    
     useEffect(()=> {
         axios.post('https://us-central1-songsly-ec779.cloudfunctions.net/app/home/login', {
             code,
@@ -16,10 +16,10 @@ const useAuth = (code) => {
             setAccessToken(res.data.accessToken);
             setRefreshToken(res.data.refreshToken);
             setExpiresIn(res.data.expiresIn);
-
+            window.history.pushState({},null,"/")
             console.log(res.data);
-            window.history.pushState({}, null, "/")
         }).catch(()=> {
+            console.log("problem is here!!!!");
             window.location = "/"
         })
     }, [code])
