@@ -1,9 +1,16 @@
 import {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Plot from 'react-plotly.js';
+import useAuth from '../getAuth';
+
+
 
 
 const Home = ({setUri}) => {
+    const code = new URLSearchParams(window.location.search).get('code');
+    const accessToken = useAuth(code);
+
+
     const [topGenres, setTopGenres] = useState(null)
     const [topArtists, setTopArtists] = useState(null)
     const [keyCounter, setKeyCounter] = useState(null)
@@ -191,4 +198,3 @@ const Home = ({setUri}) => {
 }
 
 export default Home
-export const isthisit = "https://open.spotify.com/album/2k8KgmDp9oHrmu0MIj4XDE?si=FXRBNRVwTbSIHiCWYEb7cg"
