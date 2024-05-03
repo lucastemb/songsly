@@ -9,13 +9,13 @@ import Album from './Album'
 const AlbumAnalysis = (props) => {
     const [album, setAlbum] = useState(null)
     
-    const spotifyApi = new SpotifyWebApi({
-        clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
-        clientSecret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET,
-        redirectUri: process.env.REACT_APP_SPOTIFY_REDIRECT_URI
-    })
     const album_id = props.uri.substring(31,53) //playlist uri
     useEffect(()=> {
+        const spotifyApi = new SpotifyWebApi({
+            clientId: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
+            clientSecret: process.env.REACT_APP_SPOTIFY_CLIENT_SECRET,
+            redirectUri: process.env.REACT_APP_SPOTIFY_REDIRECT_URI
+        })
         const ids = []
         spotifyApi.setAccessToken(props.accessToken)
         spotifyApi.getAlbum(album_id).then((response)=>{
@@ -36,7 +36,7 @@ const AlbumAnalysis = (props) => {
             
             
         })
-    }, [album_id,spotifyApi,props.accessToken])
+    }, [album_id, props.accessToken])
     
     return(
         <Album album={album}/>

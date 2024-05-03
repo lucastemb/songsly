@@ -8,7 +8,6 @@ import useAuth from '../getAuth';
 const code = new URLSearchParams(window.location.search).get('code');
 
 const Home = ({setUri, setAccessToken}) => {
-    const code = new URLSearchParams(window.location.search).get('code');
     setAccessToken(useAuth(code));
 
     const [topGenres, setTopGenres] = useState(null)
