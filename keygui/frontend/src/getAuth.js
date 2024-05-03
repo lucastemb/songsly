@@ -32,7 +32,7 @@ const useAuth = (code) => {
                 refreshToken,
             }).then(res=> {
                 setAccessToken(res.data.accessToken);
-                setExpiresIn(res.data.expiresIn);
+                setExpiresIn(61);
             }).catch(()=> {
                 window.location = "/"
             })
