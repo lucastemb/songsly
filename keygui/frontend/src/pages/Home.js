@@ -9,7 +9,7 @@ import useAuth from '../getAuth';
 const Home = ({setUri}) => {
     const code = new URLSearchParams(window.location.search).get('code');
     const accessToken = useAuth(code);
-
+    console.log(accessToken);
 
     const [topGenres, setTopGenres] = useState(null)
     const [topArtists, setTopArtists] = useState(null)

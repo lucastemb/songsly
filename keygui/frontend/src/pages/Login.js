@@ -1,6 +1,3 @@
-import SpotifyWebApi from "spotify-web-api-node";
-
-
 const Login = () => {
     const scopes = [
         "ugc-image-upload",
