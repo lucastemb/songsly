@@ -9,7 +9,7 @@ const Album = ({album, error}) => {
 
     }
     
-    if((!album || !album.tracks || album.tracks.length === 0) && error != ""){
+    if((!album || !album.tracks || album.tracks.length === 0) && error !== ""){
         return <div> {error} </div>
     }
     else if (!album || !album.tracks || album.tracks.length === 0) {
