@@ -1,4 +1,4 @@
-const Album = ({album}) => {
+const Album = ({album, error}) => {
     const keys = {0:'C', 1:'C♯/D♭', 2:'D', 3:'E♭', 4:'E', 5:'F', 6:'F♯/G♭', 7:'G', 8:'A♭', 9:'A', 10:'B♭', 11:'B/C♭'}
     const mode = {0: "Minor", 1: "Major"}
     
@@ -8,9 +8,12 @@ const Album = ({album}) => {
         return min + ":" + (sec < 10 ? '0' : '') + sec
 
     }
-
-    if(!album || !album.tracks || album.tracks.length === 0){
-        return <div> No Tracks Returned </div>
+    
+    if((!album || !album.tracks || album.tracks.length === 0) && error != ""){
+        return <div> {error} </div>
+    }
+    else if (!album || !album.tracks || album.tracks.length === 0) {
+        return <div> Loading... </div>
     }
 
     return(

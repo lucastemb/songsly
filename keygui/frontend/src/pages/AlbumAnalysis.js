@@ -8,6 +8,7 @@ import Album from './Album'
 
 const AlbumAnalysis = (props) => {
     const [album, setAlbum] = useState(null)
+    const [error, setError] = useState("")
     
     const album_id = props.uri.substring(31,53) //playlist uri
     useEffect(()=> {
@@ -31,15 +32,16 @@ const AlbumAnalysis = (props) => {
                     tracks: response.body.tracks.items,
                     features: res.body.audio_features
                 })
-            })
-            
-            
-            
+            }) 
+        })
+        .catch((error)=> {
+            setError('Error fetching data: ' + error.message);
+            console.error('Error fetching data', error)
         })
     }, [album_id, props.accessToken])
     
     return(
-        <Album album={album}/>
+        <Album album={album} error={error}/>
     )
 }
 
